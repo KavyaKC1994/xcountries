@@ -28,14 +28,13 @@ function XCountriesSearch() {
   };
 
   const handleSearch = (event) => {
-    const term = event.target.value;
+    const term = event.target.value.toLowerCase(); // Convert search term to lowercase
     setSearchTerm(term);
-    const filtered = countries.filter((country) =>
-      country.name.common.includes(term)
+    const filtered = countries.filter(
+      (country) => country.name.common.toLowerCase().includes(term) // Convert country name to lowercase for comparison
     );
     setFilteredCountries(filtered);
   };
-
   return (
     <div className="container">
       <input
