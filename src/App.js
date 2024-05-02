@@ -28,12 +28,16 @@ function XCountriesSearch() {
   };
 
   const handleSearch = (event) => {
-    const term = event.target.value.toLowerCase(); // Convert search term to lowercase
+    const term = event.target.value.trim().toLowerCase(); // Trim and convert search term to lowercase
     setSearchTerm(term);
-    const filtered = countries.filter(
-      (country) => country.name.common.toLowerCase().includes(term) // Convert country name to lowercase for comparison
-    );
-    setFilteredCountries(filtered);
+    if (term === "") {
+      setFilteredCountries(countries); // If search term is empty, show all countries
+    } else {
+      const filtered = countries.filter(
+        (country) => country.name.common.toLowerCase().includes(term) // Convert country name to lowercase for comparison
+      );
+      setFilteredCountries(filtered);
+    }
   };
   return (
     <div className="container">
